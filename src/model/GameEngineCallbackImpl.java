@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,41 +31,31 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 	public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
 	{
 		// intermediate results logged at Level.FINE
-		logger.log(Level.FINE, "Intermediate data to log .. String.format() is good here!");
-		// TO DO: complete this method to log results
-		logger.log(Level.FINE, player.getPlayerName() + ": ROLLING " + "Dice 1: " + dicePair.getDice1() 
-				+ " Dice 2: " + dicePair.getDice2() + " .. Total: " + (dicePair.getDice1()+dicePair.getDice2()));
+		logger.log(Level.FINE, player.getPlayerName() + ": ROLLING " + dicePair.toString());
 	}
 
 	@Override
 	public void result(Player player, DicePair result, GameEngine gameEngine)
 	{
 		// final results logged at Level.INFO
-		logger.log(Level.INFO, "Result data to log .. String.format() is good here!");
-		// TO DO: complete this method to log results
-		logger.log(Level.INFO, player.getPlayerName() + ": *RESULT* " + "Dice 1: " + result.getDice1() 
-		+ " Dice 2: " + result.getDice2() + " .. Total: " + (result.getDice1()+result.getDice2()));
+		logger.log(Level.INFO, player.getPlayerName() + ": *RESULT* " + result.toString());
 	}
 
 	@Override
 	public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine) {
 		// intermediate results logged at Level.FINE
-		logger.log(Level.FINE, "Intermediate data to log .. String.format() is good here!");
-		// TO DO: complete this method to log results
-		logger.log(Level.FINE, "House: ROLLING " + "Dice 1: " + dicePair.getDice1() 
-		+ " Dice 2: " + dicePair.getDice2() + " .. Total: " + (dicePair.getDice1()+dicePair.getDice2()));
+		logger.log(Level.FINE, "House: ROLLING " + dicePair.toString());
 		
 	}
 
 	@Override
 	public void houseResult(DicePair result, GameEngine gameEngine) {
 		// final results logged at Level.INFO
-		logger.log(Level.INFO, "Result data to log .. String.format() is good here!");
-		// TODO Auto-generated method stub
-		logger.log(Level.INFO, "House: *RESULT* " + "Dice 1: " + result.getDice1() 
-		+ " Dice 2: " + result.getDice2() + " .. Total: " + (result.getDice1()+result.getDice2()));
+		logger.log(Level.INFO, "House: *RESULT* " + "Dice 1: " + result.toString());
+		Collection<Player> players = gameEngine.getAllPlayers();
+		for(Player player : players)
+		{
+			logger.log(Level.INFO, player.toString());
+		}
 	}
-
-	// TO DO: complete the GameEngineCallback interface implementation
-
 }

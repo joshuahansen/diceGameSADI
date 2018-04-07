@@ -32,6 +32,6 @@ public class DicePairImpl implements DicePair{
 	@Override
 	public String toString()
 	{
-		return "(" + getDice1() + "," + getDice2() + ")";
+		return "Dice 1: " + this.getDice1() + " ,  Dice 2: " + this.getDice2() + " .. Total: " + (this.getDice1() + this.getDice2());
 	}
 }

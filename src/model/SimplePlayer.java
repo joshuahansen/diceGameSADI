@@ -67,4 +67,9 @@ public class SimplePlayer implements Player {
 	public void setRollResult(DicePair rollResult) {
 		this.rollResult = rollResult;
 	}
+	@Override
+	public String toString()
+	{
+		return "Player: id=" + this.getPlayerId() + ", name=" + this.getPlayerName() + ", points=" + this.getPoints();  
+	}
 }
