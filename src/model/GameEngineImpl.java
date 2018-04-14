@@ -21,10 +21,11 @@ public class GameEngineImpl implements GameEngine{
 	public boolean placeBet(Player player, int bet) {
 		return player.placeBet(bet);
 	}
-
+	
+	//randomly prints out dicePair results for each increment.
+	//prints out final result for player and sets rollResults
 	@Override
 	public void rollPlayer(Player player, int initialDelay, int finalDelay, int delayIncrement) {
-		// TODO Auto-generated method stub
 		DicePair dicePair = null;
 		Random rand = new Random();
 		for(int delay = initialDelay; delay < finalDelay; delay += delayIncrement)
@@ -43,10 +44,9 @@ public class GameEngineImpl implements GameEngine{
 		}
 		player.setRollResult(dicePair);
 	}
-
+	//same as rollPlayer but for the house
 	@Override
 	public void rollHouse(int initialDelay, int finalDelay, int delayIncrement) {
-		// TODO Auto-generated method stub
 		DicePair dicePair = null;
 		Random rand = new Random();
 		for(int delay = initialDelay; delay < finalDelay; delay += delayIncrement)
@@ -65,6 +65,7 @@ public class GameEngineImpl implements GameEngine{
 			callback.houseResult(dicePair, this);
 		}
 	}
+	//loops through players and update points bet depending if they where higher or lower than the house dicePair
 	private void updatePlayers(DicePair houseDice)
 	{
 		int houseTotal = houseDice.getDice1() + houseDice.getDice2();
@@ -81,38 +82,32 @@ public class GameEngineImpl implements GameEngine{
 
 	@Override
 	public void addPlayer(Player player) {
-		// TODO Auto-generated method stub
 		this.players.put(player.getPlayerId(), player);		
 	}
 
 	@Override
 	public Player getPlayer(String id) {
-		// TODO Auto-generated method stub
 		return this.players.get(id);
 	}
 
 	@Override
 	public boolean removePlayer(Player player) {
-		// TODO Auto-generated method stub
 		this.players.remove(player.getPlayerId());
 		return true;
 	}
 
 	@Override
 	public void addGameEngineCallback(GameEngineCallback gameEngineCallback) {
-		// TODO Auto-generated method stub
 		this.gameEngineCallbacks.add(gameEngineCallback);
 	}
 
 	@Override
 	public boolean removeGameEngineCallback(GameEngineCallback gameEngineCallback) {
-		// TODO Auto-generated method stub
 		return gameEngineCallbacks.remove(gameEngineCallback);
 	}
 
 	@Override
 	public Collection<Player> getAllPlayers() {
-		// TODO Auto-generated method stub
 		return this.players.values();
 	}
 

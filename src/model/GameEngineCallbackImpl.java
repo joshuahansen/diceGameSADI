@@ -47,7 +47,7 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 		logger.log(Level.FINE, "House: ROLLING " + dicePair.toString());
 		
 	}
-
+	//prints out house result then loops through players and prints out info
 	@Override
 	public void houseResult(DicePair result, GameEngine gameEngine) {
 		// final results logged at Level.INFO
