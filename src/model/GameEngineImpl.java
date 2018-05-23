@@ -19,7 +19,12 @@ public class GameEngineImpl implements GameEngine{
 	
 	@Override
 	public boolean placeBet(Player player, int bet) {
-		return player.placeBet(bet);
+		if(!player.placeBet(bet))
+		{
+			return false;
+		}
+		else
+			return true;
 	}
 	
 	//randomly prints out dicePair results for each increment.
@@ -36,6 +41,11 @@ public class GameEngineImpl implements GameEngine{
 			for(GameEngineCallback callback : this.gameEngineCallbacks)
 			{
 				callback.intermediateResult(player, dicePair, this);
+			}
+			try {
+				Thread.sleep(delayIncrement);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 		for(GameEngineCallback callback : this.gameEngineCallbacks)

@@ -1,10 +1,12 @@
 package client;
 
-import model.GameEngineCallbackImpl;
+import javax.swing.*;
+
 import model.GameEngineImpl;
 import model.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.*;
 
 /**
  * Simple console client for SADI assignment 1, 2018
@@ -25,22 +27,32 @@ public class SimpleTestClient
 
 		// create two test players (NOTE: you will need to implement the 3 arg contructor in SimplePlayer)
 		Player[] players = new Player[]
-		{ new SimplePlayer("1", "The Roller", 1000), new SimplePlayer("2", "The Loser", 500) };
+		{ new SimplePlayer("1", "The Roller", 1000), new SimplePlayer("2", "The Loser", 500),new SimplePlayer("3", "The Best", 1500)  };
 		
 		// register the callback for notifications (all logging output is done by GameEngineCallbackImpl)
 		// see provided skeleton class GameEngineCallbackImpl.java
 		gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
-
-		// main loop to add players place a bet and roll
-		for (Player player : players)
+		
+		SwingUtilities.invokeLater(new Runnable()
 		{
-			gameEngine.placeBet(player, 100);
-			gameEngine.addPlayer(player);
-			gameEngine.rollPlayer(player, 1, 100, 20);
-		}
-
-		// all players have rolled so now house rolls (GameEngineCallBack is
-		// called) and results are calculated
-		gameEngine.rollHouse(1, 100, 20);
+			@Override
+			public void run()
+			{
+				new MainWindow(gameEngine, players);
+				//TODO CREATE FRAME
+			}
+		});
+//		// main loop to add players place a bet and roll
+//		for (Player player : players)
+//		{
+//			gameEngine.placeBet(player, 100);
+//			gameEngine.addPlayer(player);
+//			gameEngine.rollPlayer(player, 1, 10000, 1000);
+//		}
+//		
+//
+//		// all players have rolled so now house rolls (GameEngineCallBack is
+//		// called) and results are calculated
+//		gameEngine.rollHouse(1, 100, 20);
 	}
 }
