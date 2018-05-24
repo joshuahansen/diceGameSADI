@@ -21,7 +21,7 @@ public class MainWindow extends JFrame{
 		this.setLayout(new BorderLayout());
 		add(greeting, BorderLayout.PAGE_START);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setMenuBar(new MenuBar());
+		this.setJMenuBar(new CustomMenuBar());
 		this.add(new Toolbar(this, gameEngine, players[0]));
 		setVisible(true);
 	}

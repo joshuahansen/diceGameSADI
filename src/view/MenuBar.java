@@ -25,9 +25,9 @@ import controller.Exit;
 // Demonstrate basic menu functionality
 // A more cohesive design for this example is available in Topic 6
 // variable scope refactored by Caspar for better encapsulation
-class MenuBar extends JMenuBar
+class CustomMenuBar extends JMenuBar
 {
-	public MenuBar()
+	public CustomMenuBar()
 	{
 		setBackground(Color.gray);
 
@@ -53,7 +53,6 @@ class MenuBar extends JMenuBar
 
 		// and the Menu to the MenuBar
 		menubar.add(fileMenu);
-		setPreferredSize(new Dimension(450,130));
-		add(menubar, BorderLayout.PAGE_START);
+		add(menubar);
 	}
 }
