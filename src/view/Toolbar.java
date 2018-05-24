@@ -2,11 +2,13 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Image;
 import java.net.URL;
 
 import javax.swing.*;
 
+import controller.AddPlayer;
 import controller.MakeBet;
 import controller.MakeRoll;
 import model.interfaces.GameEngine;
@@ -15,9 +17,12 @@ import model.interfaces.Player;
 public class Toolbar extends JPanel{
 	GameEngine gameEngine;
 	Player player;
-	public Toolbar(GameEngine gameEngine, Player player)
+	Frame frame;
+	
+	public Toolbar(Frame frame, GameEngine gameEngine, Player player)
 	{
 		super(new BorderLayout());
+		this.frame = frame;
 		this.gameEngine = gameEngine;
 		this.player = player;
 		JToolBar toolbar = new JToolBar();
@@ -32,6 +37,7 @@ public class Toolbar extends JPanel{
 		JButton button = null;
 		
 		button = makeButton("player", "Add Player", "Add new player to the game");
+		button.addActionListener(new AddPlayer(this.frame, this.gameEngine));
 		toolbar.add(button);
 	
 		button = makeButton("bet", "Place Bet", "Player can place bet");

@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,14 +39,6 @@ class MenuBar extends JMenuBar
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 		menubar.add(fileMenu);
 
-		// create Menu Items
-		JMenuItem newItem = new JMenuItem("New", KeyEvent.VK_N);
-
-		// creating this from scratch is non-trivial .. see API for details!
-		newItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.ALT_DOWN_MASK
-				| InputEvent.CTRL_DOWN_MASK));
-
-
 		JMenuItem exitItem = new JMenuItem("Exit", KeyEvent.VK_X);
 		exitItem.setAccelerator(KeyStroke.getKeyStroke('X', InputEvent.ALT_MASK));
 
@@ -59,6 +53,7 @@ class MenuBar extends JMenuBar
 
 		// and the Menu to the MenuBar
 		menubar.add(fileMenu);
-		add(menubar);
+		setPreferredSize(new Dimension(450,130));
+		add(menubar, BorderLayout.PAGE_START);
 	}
 }
