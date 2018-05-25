@@ -26,7 +26,7 @@ public class PlayersList extends JPanel {
 		//create the list
 		playersList = new JList<>(listModel);
 		playersList.setFont(new Font("Sefif", Font.BOLD, 24));
-		playersList.addListSelectionListener(new SelectPlayer(frame, gameEngine, listModel, toolbar));
+		playersList.addListSelectionListener(new SelectPlayer(frame, gameEngine, listModel, playersList, toolbar));
 		add(playersList);
 		setPreferredSize(new Dimension(300, 300));
 //		this.setSize(400,400);

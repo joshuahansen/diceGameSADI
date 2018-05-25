@@ -18,7 +18,8 @@ import model.interfaces.Player;
 public class Toolbar extends JToolBar{
 	GameEngine gameEngine;
 	Player player;
-	Frame frame;
+	MainWindow frame;
+	JLabel currentPlayer;
 	
 	public Toolbar(MainWindow frame, GameEngine gameEngine, Player player)
 	{
@@ -27,7 +28,7 @@ public class Toolbar extends JToolBar{
 		this.player = player;
 		addButtons(this);
 		
-		JLabel currentPlayer = new JLabel(frame.getCurrentPlayer().getPlayerName());
+		this.currentPlayer = new JLabel(frame.getCurrentPlayer().getPlayerName());
 		currentPlayer.setFont(new Font("Sefif", Font.BOLD, 36));
 		add(currentPlayer);
 		setPreferredSize(new Dimension(450,130));
@@ -71,5 +72,10 @@ public class Toolbar extends JToolBar{
 		ImageIcon newIcon = new ImageIcon(newImage);
 		button.setIcon(newIcon);
 		return button;
+	}
+	public void updateToolbar()
+	{
+		this.currentPlayer.setText(this.frame.getCurrentPlayer().getPlayerName());
+		repaint();
 	}
 }

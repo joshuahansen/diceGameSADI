@@ -14,26 +14,29 @@ import view.Toolbar;
 public class SelectPlayer implements ListSelectionListener {
 	private GameEngine gameEngine;
 	private MainWindow frame;
-	private DefaultListModel list;
+	private DefaultListModel listModel;
+	private JList list;
 	private Toolbar toolbar;
-	public SelectPlayer(MainWindow frame, GameEngine gameEngine, DefaultListModel<String> list, Toolbar toolbar)
+	public SelectPlayer(MainWindow frame, GameEngine gameEngine, DefaultListModel<String> listModel, JList list,  Toolbar toolbar)
 	{
 		this.frame = frame;
 		this.gameEngine = gameEngine;
+		this.listModel = listModel;
 		this.list = list;
 		this.toolbar = toolbar;
 	}
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		int playerIndex = e.getFirstIndex();
-		String player = (String) list.get(playerIndex);
+		int playerIndex = list.getSelectedIndex();
+		String player = (String) listModel.get(playerIndex);
 		String[] splitString = player.split("-");
 		frame.setCurrentPlayer(gameEngine.getPlayer(splitString[0]));
 		System.out.println("NEW PLAYER SELECTED " + frame.getCurrentPlayer());
 		
-		toolbar.invalidate();
-		toolbar.validate();
-		toolbar.repaint();
+//		toolbar.invalidate();
+//		toolbar.validate();
+		
+		toolbar.updateToolbar();
 	}
 
 }

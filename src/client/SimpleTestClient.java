@@ -27,7 +27,7 @@ public class SimpleTestClient
 
 		// create two test players (NOTE: you will need to implement the 3 arg contructor in SimplePlayer)
 		Player[] players = new Player[]
-		{ new SimplePlayer("1", "The Roller", 1000), new SimplePlayer("2", "The Loser", 500),new SimplePlayer("3", "The Best", 1500)  };
+		{ new SimplePlayer("1", "Josh", 1000), new SimplePlayer("2", "Zach", 500),new SimplePlayer("3", "Lohgan", 1500)  };
 		
 		// register the callback for notifications (all logging output is done by GameEngineCallbackImpl)
 		// see provided skeleton class GameEngineCallbackImpl.java
