@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Frame;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -14,11 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.Cancel;
+import controller.SaveNewPlayer;
 import model.interfaces.GameEngine;
 
 public class AddPlayerDialog extends JDialog{
 	
-	public AddPlayerDialog(Frame frame, GameEngine gameEngine)
+	public AddPlayerDialog(MainWindow frame, GameEngine gameEngine)
 	{
 //		JDialog addPlayer = new JDialog(frame, "Add Player", true);
 		JLabel heading = new JLabel("Add New Player");
@@ -27,6 +27,7 @@ public class AddPlayerDialog extends JDialog{
 		JLabel nameLabel = new JLabel("Player Name:");
 		JLabel creditLabel = new JLabel("Player Credit:");
 		JButton save = new JButton("Add Player");
+		save.addActionListener(new SaveNewPlayer(gameEngine, frame, name, credit, this));
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(new Cancel(this));
 		JPanel panel = new JPanel();

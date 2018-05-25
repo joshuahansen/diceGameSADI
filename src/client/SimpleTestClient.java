@@ -44,7 +44,8 @@ public class SimpleTestClient
 //			@Override
 //			public void run()
 //			{
-				new MainWindow(gameEngine, players);
+				MainWindow mainWindow = new MainWindow(gameEngine, players);
+				gameEngine.addGameEngineCallback(new GameEngineCallbackGUI(mainWindow));
 //			}
 //		});
 //		// main loop to add players place a bet and roll

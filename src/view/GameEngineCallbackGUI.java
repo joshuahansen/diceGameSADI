@@ -8,6 +8,12 @@ import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
 
 public class GameEngineCallbackGUI implements GameEngineCallback {
+	public MainWindow frame;
+	
+	public GameEngineCallbackGUI(MainWindow mainWindow)
+	{
+		this.frame = mainWindow;
+	}
 
 	@Override
 	public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine) {
@@ -16,7 +22,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 					@Override
 					public void run()
 					{
-						//TODO insert intermediate result update
+						frame.refreshDice(dicePair);
 					}
 				});
 	}
@@ -28,7 +34,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 			@Override
 			public void run()
 			{
-				//TODO insert result update
+				frame.refreshDice(result);
 			}
 		});
 	}

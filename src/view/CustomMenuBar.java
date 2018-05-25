@@ -27,7 +27,7 @@ import model.interfaces.GameEngine;
 
 class CustomMenuBar extends JMenuBar
 {
-	public CustomMenuBar(Frame frame, GameEngine gameEngine)
+	public CustomMenuBar(MainWindow frame, GameEngine gameEngine)
 	{
 //		setBackground(Color.gray);
 		// create Menu

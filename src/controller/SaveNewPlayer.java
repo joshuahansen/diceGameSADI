@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,23 +15,28 @@ public class SaveNewPlayer implements ActionListener {
 
 	private GameEngine gameEngine;
 	private MainWindow frame;
-	private String name;
-	private int credit;
+	private JTextField nameText;
+	private JTextField creditText;
+	private Dialog dialog;
 	
-	public SaveNewPlayer(GameEngine gameEngine, MainWindow mainWindow, JTextField name, JTextField credit)
+	public SaveNewPlayer(GameEngine gameEngine, MainWindow mainWindow, JTextField name, JTextField credit, Dialog dialog)
 	{
 		this.gameEngine = gameEngine;
 		this.frame = mainWindow;
-		this.name = name.getText();
-		this.credit = Integer.getInteger(credit.getText());
+		this.nameText = name;
+		this.creditText = credit;
+		this.dialog = dialog;
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		String name = nameText.getText();
+		int credit = Integer.parseInt(creditText.getText());
 		int numPlayers = gameEngine.getAllPlayers().size()+1;
-		String id = "1";
-		Player player = new SimplePlayer(id, this.name, this.credit);
+		String id = Integer.toString(numPlayers);
+		Player player = new SimplePlayer(id, name, credit);
 		gameEngine.addPlayer(player);
-		
+		frame.refreshFrame();
+		this.dialog.dispose();
 	}
 
 }

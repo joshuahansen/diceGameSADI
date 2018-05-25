@@ -15,26 +15,27 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import model.interfaces.DicePair;
+
 class DicePanel extends JPanel {
-	  private static final int SIDE = 32;
+	  private static final int SIDE = 16;
 	  private static final Random r = new Random();
 	  private Color color = Color.black;
-	  private int value = getValue();
-	  private final Timer t = new Timer(500, null);
+	  private int value = r.nextInt(6) + 1;
 	  DicePanel() {
-	    value = getValue();
-	    t.addActionListener(e-> {
-	        value = getValue();
-	        repaint();
-	    });
-	    t.start();
+		  repaint();
 	  }
 	  @Override
 	  public Dimension getPreferredSize() {
 	    return new Dimension(SIDE * 7, SIDE * 7);
 	  }
-	  private int getValue() {
-	    return r.nextInt(6) + 1;
+	  private void setValue(int value) {
+	    this.value = value;
+	  }
+	  public void updateDice(int dice)
+	  {
+		  setValue(dice);
+		  repaint();
 	  }
 	  @Override
 	  public void paintComponent(Graphics g) {

@@ -6,12 +6,13 @@ import java.awt.event.ActionListener;
 
 import model.interfaces.GameEngine;
 import view.AddPlayerDialog;
+import view.MainWindow;
 
 public class AddPlayer implements ActionListener {
 	GameEngine gameEngine;
-	Frame frame;
+	MainWindow frame;
 	
-	public AddPlayer(Frame frame, GameEngine gameEngine)
+	public AddPlayer(MainWindow frame, GameEngine gameEngine)
 	{
 		this.frame = frame;
 		this.gameEngine = gameEngine;

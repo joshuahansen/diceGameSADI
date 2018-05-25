@@ -14,21 +14,29 @@ import model.interfaces.Player;
 
 public class PlayersList extends JPanel {
 	private JList<String> playersList;
-	public PlayersList(MainWindow frame, GameEngine gameEngine, Toolbar toolbar)
+	private MainWindow frame;
+	private GameEngine gameEngine;
+
+	public PlayersList(MainWindow frame, GameEngine gameEngine)
+	{
+		this.frame = frame;
+		this.gameEngine = gameEngine;
+		drawList();
+	}
+	public void drawList()
 	{
 		//create the model and add elements
-		DefaultListModel<String> listModel = new DefaultListModel<>();
-		for(Player player : gameEngine.getAllPlayers())
-		{
-			listModel.addElement(player.getPlayerId()+"-  "+player.getPlayerName());
-		}
+				DefaultListModel<String> listModel = new DefaultListModel<>();
+				for(Player player : gameEngine.getAllPlayers())
+				{
+					listModel.addElement(player.getPlayerId()+"-  "+player.getPlayerName());
+				}
 
-		//create the list
-		playersList = new JList<>(listModel);
-		playersList.setFont(new Font("Sefif", Font.BOLD, 24));
-		playersList.addListSelectionListener(new SelectPlayer(frame, gameEngine, listModel, playersList, toolbar));
-		add(playersList);
-		setPreferredSize(new Dimension(300, 300));
-//		this.setSize(400,400);
+				//create the list
+				playersList = new JList<>(listModel);
+				playersList.setFont(new Font("Sefif", Font.BOLD, 24));
+				playersList.addListSelectionListener(new SelectPlayer(frame, gameEngine, listModel, playersList));
+				add(playersList);
+				setPreferredSize(new Dimension(300, 300));
 	}
 }
