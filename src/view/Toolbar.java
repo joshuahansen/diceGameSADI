@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
 import java.net.URL;
@@ -14,34 +15,34 @@ import controller.MakeRoll;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
-public class Toolbar extends JPanel{
+public class Toolbar extends JToolBar{
 	GameEngine gameEngine;
 	Player player;
 	Frame frame;
 	
-	public Toolbar(Frame frame, GameEngine gameEngine, Player player)
+	public Toolbar(MainWindow frame, GameEngine gameEngine, Player player)
 	{
-		super(new BorderLayout());
 		this.frame = frame;
 		this.gameEngine = gameEngine;
 		this.player = player;
-		JToolBar toolbar = new JToolBar();
-		addButtons(toolbar);
+		addButtons(this);
 		
+		JLabel currentPlayer = new JLabel(frame.getCurrentPlayer().getPlayerName());
+		currentPlayer.setFont(new Font("Sefif", Font.BOLD, 36));
+		add(currentPlayer);
 		setPreferredSize(new Dimension(450,130));
-		add(toolbar, BorderLayout.PAGE_END);
 	}
 	
 	protected void addButtons(JToolBar toolbar)
 	{
 		JButton button = null;
 		
-		button = makeButton("player", "Add Player", "Add new player to the game");
-		button.addActionListener(new AddPlayer(this.frame, this.gameEngine));
-		toolbar.add(button);
+//		button = makeButton("player", "Add Player", "Add new player to the game");
+//		button.addActionListener(new AddPlayer(this.frame, this.gameEngine));
+//		toolbar.add(button);
 	
 		button = makeButton("bet", "Place Bet", "Player can place bet");
-		button.addActionListener(new MakeBet(this.gameEngine, this.player));
+		button.addActionListener(new MakeBet(this.frame, this.gameEngine, this.player));
 		toolbar.add(button);
 		
 		button = makeButton("roll", "Player Roll", "Player roll the dice");

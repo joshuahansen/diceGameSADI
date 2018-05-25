@@ -19,6 +19,7 @@ public class MakeRoll implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		this.gameEngine.rollPlayer(this.player, 1, 10000, 1000);
+		this.gameEngine.rollHouse(1, 1000, 100);
 	}
 
 }

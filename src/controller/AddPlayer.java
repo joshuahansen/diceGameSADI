@@ -19,7 +19,6 @@ public class AddPlayer implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Create Dialog here to enter new player details
 		new AddPlayerDialog(this.frame, this.gameEngine);
 	}
 

@@ -32,24 +32,23 @@ public class SimpleTestClient
 		// register the callback for notifications (all logging output is done by GameEngineCallbackImpl)
 		// see provided skeleton class GameEngineCallbackImpl.java
 		gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
-		
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			@Override
-			public void run()
+		for (Player player : players)
 			{
-				new MainWindow(gameEngine, players);
-				//TODO CREATE FRAME
+//				gameEngine.placeBet(player, 100);
+				gameEngine.addPlayer(player);
+//				gameEngine.rollPlayer(player, 1, 10000, 1000);
 			}
-		});
-//		// main loop to add players place a bet and roll
-//		for (Player player : players)
+//			
+//		SwingUtilities.invokeLater(new Runnable()
 //		{
-//			gameEngine.placeBet(player, 100);
-//			gameEngine.addPlayer(player);
-//			gameEngine.rollPlayer(player, 1, 10000, 1000);
-//		}
-//		
+//			@Override
+//			public void run()
+//			{
+				new MainWindow(gameEngine, players);
+//			}
+//		});
+//		// main loop to add players place a bet and roll
+//	
 //
 //		// all players have rolled so now house rolls (GameEngineCallBack is
 //		// called) and results are calculated

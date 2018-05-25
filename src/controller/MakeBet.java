@@ -1,16 +1,20 @@
 package controller;
 
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.AddPlayerDialog;
+import view.PlaceBetDialog;
 
 public class MakeBet implements ActionListener{
+	Frame frame;
 	GameEngine gameEngine;
 	Player player;
 	
-	public MakeBet(GameEngine gameEngine, Player player)
+	public MakeBet(Frame frame, GameEngine gameEngine, Player player)
 	{
 		this.gameEngine = gameEngine;
 		this.player = player;
@@ -18,8 +22,7 @@ public class MakeBet implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO open dialog to enter bet amount and place bet
-		this.gameEngine.placeBet(this.player, 100);
+		new PlaceBetDialog(this.frame, this.gameEngine, this.player);
 	}
 
 }
