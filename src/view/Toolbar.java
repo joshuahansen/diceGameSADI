@@ -12,25 +12,34 @@ import javax.swing.*;
 import controller.AddPlayer;
 import controller.MakeBet;
 import controller.MakeRoll;
+import controller.PlaceBet;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 public class Toolbar extends JToolBar{
 	GameEngine gameEngine;
-	Player player;
+	String player;
 	MainWindow frame;
 	JLabel currentPlayer;
+	MakeRoll makeRoll;
+	MakeBet makeBet;
 	
-	public Toolbar(MainWindow frame, GameEngine gameEngine, Player player)
+	public Toolbar(MainWindow frame, GameEngine gameEngine, String player)
 	{
 		this.frame = frame;
 		this.gameEngine = gameEngine;
 		this.player = player;
 		addButtons(this);
-		
-		this.currentPlayer = new JLabel(frame.getCurrentPlayer().getPlayerName());
-		currentPlayer.setFont(new Font("Sefif", Font.BOLD, 36));
-		add(currentPlayer);
+		if(frame.getCurrentPlayer() != null)
+		{
+			this.currentPlayer = new JLabel(gameEngine.getPlayer(frame.getCurrentPlayer()).getPlayerName());
+		}
+		else
+		{
+			this.currentPlayer = new JLabel();
+			currentPlayer.setFont(new Font("Sefif", Font.BOLD, 36));
+			add(currentPlayer);
+		}
 		setPreferredSize(new Dimension(450,130));
 	}
 	
@@ -43,11 +52,12 @@ public class Toolbar extends JToolBar{
 //		toolbar.add(button);
 	
 		button = makeButton("bet", "Place Bet", "Player can place bet");
-		button.addActionListener(new MakeBet(this.frame, this.gameEngine, this.player));
+		button.addActionListener(new MakeBet(this.frame, this.gameEngine));
 		toolbar.add(button);
 		
 		button = makeButton("roll", "Player Roll", "Player roll the dice");
-		button.addActionListener(new MakeRoll(this.gameEngine, this.player));
+		makeRoll = new MakeRoll(this.gameEngine, this.player);
+		button.addActionListener(makeRoll);
 		toolbar.add(button);
 
 	}
@@ -75,8 +85,8 @@ public class Toolbar extends JToolBar{
 	}
 	public void updateToolbar()
 	{
-		this.currentPlayer.setText(this.frame.getCurrentPlayer().getPlayerName());
-		this.player = this.frame.getCurrentPlayer();
+		this.currentPlayer.setText(this.gameEngine.getPlayer(this.frame.getCurrentPlayer()).getPlayerName());
+		this.makeRoll.updatePlayer(this.frame.getCurrentPlayer());
 		repaint();
 	}
 }

@@ -7,22 +7,22 @@ import java.awt.event.ActionListener;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.AddPlayerDialog;
+import view.MainWindow;
 import view.PlaceBetDialog;
 
 public class MakeBet implements ActionListener{
-	Frame frame;
+	MainWindow frame;
 	GameEngine gameEngine;
-	Player player;
+
 	
-	public MakeBet(Frame frame, GameEngine gameEngine, Player player)
+	public MakeBet(MainWindow frame, GameEngine gameEngine)
 	{
 		this.gameEngine = gameEngine;
-		this.player = player;
+		this.frame = frame;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new PlaceBetDialog(this.frame, this.gameEngine, this.player);
+		new PlaceBetDialog(this.frame, this.gameEngine);
 	}
-
 }

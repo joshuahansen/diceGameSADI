@@ -8,17 +8,19 @@ import javax.swing.JTextField;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.MainWindow;
 
 public class PlaceBet implements ActionListener {
 	GameEngine gameEngine;
-	Player player;
+	MainWindow frame;
+	String player;
 	JTextField bet;
 	Dialog dialog;
 	
-	public PlaceBet(GameEngine gameEngine, Player player, JTextField bet, Dialog dialog)
+	public PlaceBet(MainWindow frame, GameEngine gameEngine, JTextField bet, Dialog dialog)
 	{
+		this.frame = frame;
 		this.gameEngine = gameEngine;
-		this.player = player;
 		this.bet = bet;
 		this.dialog = dialog;
 	}
@@ -27,8 +29,18 @@ public class PlaceBet implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		String betString = bet.getText();
 		int betValue = Integer.valueOf(betString);
-		this.gameEngine.placeBet(this.player, betValue);
-		this.dialog.dispose();
+		System.out.println(betValue);
+		updatePlayer();
+		if(player != null)
+		{
+			System.out.println("CURRENT CREDIT: " + gameEngine.getPlayer(this.player).getPoints() + " BET: "+ betValue);
+			if(this.gameEngine.placeBet(gameEngine.getPlayer(this.player), betValue))
+				this.dialog.dispose();	
+		}
+	}
+	public void updatePlayer()
+	{
+		this.player = this.frame.getCurrentPlayer();
 	}
 
 }

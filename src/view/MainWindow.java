@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.*;
 
@@ -13,31 +14,49 @@ import model.interfaces.Player;
 
 public class MainWindow extends JFrame{
 	GameEngine gameEngine;
-	Player currentPlayer;
+	String currentPlayer;
 	Toolbar toolbar;
 	PlayersList playersList;
-	DicePanel d1;
-	DicePanel d2;
+	DicePanel pd1;
+	DicePanel pd2;
+	DicePanel hd1;
+	DicePanel hd2;
 	
-	public MainWindow(GameEngine gameEngine, Player[] players)
+	public MainWindow(GameEngine gameEngine)
 	{
 		super("SADI Dice Game");
 		this.gameEngine = gameEngine;
-		this.currentPlayer = this.gameEngine.getPlayer("1");
+//		if(gameEngine.getAllPlayers() != null)
+//		{
+//			this.currentPlayer = this.gameEngine.getPlayer("1");
+//		}
 		
 		setBounds(300, 300, 800, 600);
 		this.setLayout(new BorderLayout());
 		
-		JLabel greeting = new JLabel("Welcome to the dice game");
-		greeting.setFont(new Font("Sefif", Font.BOLD, 36));
-		add(greeting, BorderLayout.PAGE_START);
+//		JLabel greeting = new JLabel("Welcome to the dice game");
+//		greeting.setFont(new Font("Sefif", Font.BOLD, 36));
+//		add(greeting, BorderLayout.PAGE_START);
 		setJMenuBar(new CustomMenuBar(this, gameEngine));
 		JPanel centerPanel = new JPanel();
-		centerPanel.setLayout(new FlowLayout());
-		d1 = new DicePanel();
-		centerPanel.add(d1);
-		d2 = new DicePanel();
-		centerPanel.add(d2);
+		centerPanel.setLayout(new GridLayout(0,3));
+		//add player dice
+		JLabel player = new JLabel("Player:");
+		player.setFont(new Font("Sefif", Font.BOLD, 36));
+		centerPanel.add(player);
+		pd1 = new DicePanel();
+		centerPanel.add(pd1);
+		pd2 = new DicePanel();
+		centerPanel.add(pd2);
+		//add house dice
+		JLabel house = new JLabel("House:");
+		house.setFont(new Font("Sefif", Font.BOLD, 36));
+		centerPanel.add(house);
+		hd1 = new DicePanel();
+		centerPanel.add(hd1);
+		hd2 = new DicePanel();
+		centerPanel.add(hd2);
+		
 		add(centerPanel);
 		this.toolbar = new Toolbar(this, gameEngine, currentPlayer);
 		add(toolbar, BorderLayout.PAGE_END);
@@ -50,11 +69,11 @@ public class MainWindow extends JFrame{
 		setVisible(true);
 	}
 	
-	public Player getCurrentPlayer()
+	public String getCurrentPlayer()
 	{
 		return this.currentPlayer;
 	}
-	public void setCurrentPlayer(Player player)
+	public void setCurrentPlayer(String player)
 	{
 		this.currentPlayer = player;
 	}
@@ -71,13 +90,26 @@ public class MainWindow extends JFrame{
 	{
 		if(dicePair == null)
 		{
-			d1.updateDice(0);
-			d2.updateDice(0);
+			pd1.updateDice(0);
+			pd2.updateDice(0);
 		}
 		else
 		{
-			d1.updateDice(dicePair.getDice1());
-			d2.updateDice(dicePair.getDice2());
+			pd1.updateDice(dicePair.getDice1());
+			pd2.updateDice(dicePair.getDice2());
+		}
+	}
+	public void refreshHouseDice(DicePair dicePair)
+	{	
+		if(dicePair == null)
+		{
+			hd1.updateDice(0);
+			hd2.updateDice(0);
+		}
+		else
+		{
+			hd1.updateDice(dicePair.getDice1());
+			hd2.updateDice(dicePair.getDice2());
 		}
 	}
 }

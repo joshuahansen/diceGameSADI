@@ -26,25 +26,25 @@ public class SimpleTestClient
 		final GameEngine gameEngine = new GameEngineImpl();
 
 		// create two test players (NOTE: you will need to implement the 3 arg contructor in SimplePlayer)
-		Player[] players = new Player[]
-		{ new SimplePlayer("1", "Josh", 1000), new SimplePlayer("2", "Zach", 500),new SimplePlayer("3", "Lohgan", 1500)  };
-		
+//		Player[] players = new Player[]
+//		{ new SimplePlayer("1", "Josh", 1000), new SimplePlayer("2", "Zach", 500),new SimplePlayer("3", "Lohgan", 1500)  };
+//		
 		// register the callback for notifications (all logging output is done by GameEngineCallbackImpl)
 		// see provided skeleton class GameEngineCallbackImpl.java
 		gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
-		for (Player player : players)
-			{
+//		for (Player player : players)
+//			{
 //				gameEngine.placeBet(player, 100);
-				gameEngine.addPlayer(player);
+//				gameEngine.addPlayer(player);
 //				gameEngine.rollPlayer(player, 1, 10000, 1000);
-			}
+//			}
 //			
 //		SwingUtilities.invokeLater(new Runnable()
 //		{
 //			@Override
 //			public void run()
 //			{
-				MainWindow mainWindow = new MainWindow(gameEngine, players);
+				MainWindow mainWindow = new MainWindow(gameEngine);
 				gameEngine.addGameEngineCallback(new GameEngineCallbackGUI(mainWindow));
 //			}
 //		});

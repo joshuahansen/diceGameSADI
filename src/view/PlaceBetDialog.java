@@ -19,16 +19,20 @@ import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 public class PlaceBetDialog extends JDialog {
+	PlaceBet placeBet;
+	MainWindow frame;
 	
-	public PlaceBetDialog(Frame frame, GameEngine gameEngine, Player player)
+	public PlaceBetDialog(MainWindow frame, GameEngine gameEngine)
 	{
 		super(frame, "Place Bet");
+		this.frame = frame;
 	//	JLabel heading = new JLabel("Place Bet");
 		JTextField bet = new JTextField(30);
 		JLabel betLabel = new JLabel("Enter Bet:");
 		
 		JButton place = new JButton("Place Bet");
-		place.addActionListener(new PlaceBet(gameEngine, player, bet, this));
+		this.placeBet = new PlaceBet(frame, gameEngine, bet, this);
+		place.addActionListener(this.placeBet);
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(new Cancel(this));
 		
@@ -56,7 +60,7 @@ public class PlaceBetDialog extends JDialog {
 				);
 
 		add(panel);
-		setBounds(200, 200, 500, 400);
+		setBounds(400, 400, 500, 400);
 		pack();
 		setVisible(true);
 	}

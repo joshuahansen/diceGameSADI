@@ -2,32 +2,55 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.List;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 public class MakeRoll implements ActionListener{
-	Player player;
+	String player;
 	GameEngine gameEngine;
 	
-	public MakeRoll(GameEngine gameEngine, Player player)
+	public MakeRoll(GameEngine gameEngine, String player)
 	{
 		this.gameEngine = gameEngine;
 		this.player = player;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		new Thread()
+		if(this.gameEngine.getPlayer(player) != null)
 		{
-			@Override
-			public void run()
+			if(this.gameEngine.getPlayer(player).getBet() > 0)
 			{
-				gameEngine.rollPlayer(player, 1, 10000, 1000);
+				new Thread()
+				{
+					@Override
+					public void run()
+					{
+						gameEngine.rollPlayer(gameEngine.getPlayer(player), 1, 10000, 800);
+						Collection<Player> players = gameEngine.getAllPlayers();
+						boolean allBet = true;
+						for(Player player : players)
+						{
+							if(player.getRollResult() == null)
+							{
+								allBet = false;
+								break;
+							}
+						}
+						if(allBet)
+						{
+							gameEngine.rollHouse(1, 10000, 800);
+						}
+					}
+				}.start();
 			}
-		}.start();
-		
-//		this.gameEngine.rollHouse(1, 1000, 100);
+		}
+	}
+	public void updatePlayer(String player)
+	{
+		this.player = player;
 	}
 
 }

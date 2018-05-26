@@ -30,13 +30,13 @@ public class SaveNewPlayer implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String name = nameText.getText();
-		int credit = Integer.parseInt(creditText.getText());
+		int credit = Integer.valueOf(creditText.getText());
 		int numPlayers = gameEngine.getAllPlayers().size()+1;
 		String id = Integer.toString(numPlayers);
 		Player player = new SimplePlayer(id, name, credit);
 		gameEngine.addPlayer(player);
-		frame.refreshFrame();
 		this.dialog.dispose();
+		frame.refreshFrame();
 	}
 
 }

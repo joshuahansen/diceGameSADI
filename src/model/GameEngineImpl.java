@@ -68,6 +68,11 @@ public class GameEngineImpl implements GameEngine{
 			{
 				callback.intermediateHouseResult(dicePair, this);
 			}
+			try {
+				Thread.sleep(delayIncrement);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		this.updatePlayers(dicePair);
 		for(GameEngineCallback callback : this.gameEngineCallbacks)

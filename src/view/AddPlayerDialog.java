@@ -60,7 +60,7 @@ public class AddPlayerDialog extends JDialog{
 				);
 
 		add(panel);
-		setBounds(200, 200, 500, 400);
+		setBounds(400, 400, 500, 400);
 		pack();
 		setVisible(true);
 	}

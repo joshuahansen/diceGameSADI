@@ -29,11 +29,11 @@ public class SelectPlayer implements ListSelectionListener {
 		int playerIndex = list.getSelectedIndex();
 		String player = (String) listModel.get(playerIndex);
 		String[] splitString = player.split("-");
-		frame.setCurrentPlayer(gameEngine.getPlayer(splitString[0]));
+		frame.setCurrentPlayer(splitString[0]);
 		System.out.println("NEW PLAYER SELECTED " + frame.getCurrentPlayer());
 		
 		
-		frame.refreshDice(frame.getCurrentPlayer().getRollResult());
+		frame.refreshDice(gameEngine.getPlayer(frame.getCurrentPlayer()).getRollResult());
 		frame.refreshFrame();
 	}
 
