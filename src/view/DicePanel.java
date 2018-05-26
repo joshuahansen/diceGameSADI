@@ -21,7 +21,7 @@ class DicePanel extends JPanel {
 	  private static final int SIDE = 16;
 	  private static final Random r = new Random();
 	  private Color color = Color.black;
-	  private int value = r.nextInt(6) + 1;
+	  private int value = 0;//r.nextInt(6) + 1;
 	  DicePanel() {
 		  repaint();
 	  }
@@ -42,6 +42,8 @@ class DicePanel extends JPanel {
 	    super.paintComponent(g);
 	    g.setColor(color);
 	    switch (value) {
+	    case 0:
+	    	break;
 	    case 1:
 	      g.fillRect(3 * SIDE, 3 * SIDE, SIDE, SIDE);
 	      break;

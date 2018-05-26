@@ -76,6 +76,7 @@ public class Toolbar extends JToolBar{
 	public void updateToolbar()
 	{
 		this.currentPlayer.setText(this.frame.getCurrentPlayer().getPlayerName());
+		this.player = this.frame.getCurrentPlayer();
 		repaint();
 	}
 }

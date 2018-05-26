@@ -63,12 +63,21 @@ public class MainWindow extends JFrame{
 		this.playersList.removeAll();
 		this.playersList.drawList();
 		this.playersList.revalidate();
+		
 		this.toolbar.updateToolbar();
 		this.toolbar.revalidate();
 	}
 	public void refreshDice(DicePair dicePair)
 	{
-		d1.updateDice(dicePair.getDice1());
-		d2.updateDice(dicePair.getDice2());
+		if(dicePair == null)
+		{
+			d1.updateDice(0);
+			d2.updateDice(0);
+		}
+		else
+		{
+			d1.updateDice(dicePair.getDice1());
+			d2.updateDice(dicePair.getDice2());
+		}
 	}
 }

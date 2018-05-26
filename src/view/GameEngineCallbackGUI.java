@@ -46,7 +46,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 			@Override
 			public void run()
 			{
-				//TODO insert intermediate house result update
+				frame.refreshDice(dicePair);
 			}
 		});
 	}
@@ -58,7 +58,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 			@Override
 			public void run()
 			{
-				//TODO insert house result update
+				frame.refreshDice(result);
 			}
 		});
 	}

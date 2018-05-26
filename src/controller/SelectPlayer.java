@@ -32,8 +32,9 @@ public class SelectPlayer implements ListSelectionListener {
 		frame.setCurrentPlayer(gameEngine.getPlayer(splitString[0]));
 		System.out.println("NEW PLAYER SELECTED " + frame.getCurrentPlayer());
 		
+		
+		frame.refreshDice(frame.getCurrentPlayer().getRollResult());
 		frame.refreshFrame();
-
 	}
 
 }
