@@ -62,7 +62,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 			public void run()
 			{
 				frame.refreshHouseDice(result);
-				new ResultsWindow(frame, gameEngine);
+				new ResultsWindow(frame, gameEngine, result);
 			}
 		});
 	}
