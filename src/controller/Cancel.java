@@ -5,6 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
 
+/**
+ * 
+ * @author Joshua Hansen
+ * ActionListener for canceling and disposing the dialog
+ */
 public class Cancel implements ActionListener {
 	JDialog dialog;
 	public Cancel(JDialog dialog)

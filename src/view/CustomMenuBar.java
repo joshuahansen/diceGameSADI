@@ -24,17 +24,21 @@ import javax.swing.SwingUtilities;
 import controller.AddPlayer;
 import controller.Exit;
 import model.interfaces.GameEngine;
-
+/**
+ * 
+ * @author Joshua Hansen
+ * Custom Menu Bar 
+ */
 class CustomMenuBar extends JMenuBar
 {
 	public CustomMenuBar(MainWindow frame, GameEngine gameEngine)
 	{
-//		setBackground(Color.gray);
 		// create Menu
 		JMenu fileMenu = new JMenu("File");
 
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 		
+		//create menu items with keyboard shortcuts
 		JMenuItem addPlayer = new JMenuItem("Add Player", KeyEvent.VK_N);
 		addPlayer.setAccelerator(KeyStroke.getKeyStroke('N', InputEvent.ALT_MASK));
 		

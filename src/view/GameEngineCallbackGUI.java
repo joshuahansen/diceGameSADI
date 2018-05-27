@@ -9,9 +9,15 @@ import model.interfaces.GameEngine;
 import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
 
+/**
+ * @author Joshua Hansen
+ * GameEngineCallbackGUI used for updating the GUI when the dice has been rolled
+ * each function runs on its own thread
+ */
 public class GameEngineCallbackGUI implements GameEngineCallback {
 	private MainWindow frame;	
 	
+	//Constructor for getting frame reference
 	public GameEngineCallbackGUI(MainWindow mainWindow)
 	{
 		this.frame = mainWindow;
@@ -53,6 +59,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 		});
 	}
 
+	//roll house then create new results window to display round results 
 	@Override
 	public void houseResult(DicePair result, GameEngine gameEngine) {
 		

@@ -10,6 +10,12 @@ import view.AddPlayerDialog;
 import view.MainWindow;
 import view.PlaceBetDialog;
 
+/**
+ * 
+ * @author Joshua Hansen
+ * ActionListener for opening Place bet dialog
+ * allows user to input a bet
+ */
 public class MakeBet implements ActionListener{
 	MainWindow frame;
 	GameEngine gameEngine;
@@ -21,6 +27,7 @@ public class MakeBet implements ActionListener{
 		this.frame = frame;
 	}
 
+	//create a new place bet dialog
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		new PlaceBetDialog(this.frame, this.gameEngine);

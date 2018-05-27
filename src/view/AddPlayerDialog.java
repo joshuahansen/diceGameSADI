@@ -1,10 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,24 +11,37 @@ import controller.Cancel;
 import controller.SaveNewPlayer;
 import model.interfaces.GameEngine;
 
+/**
+ * @author Joshua Hansen
+ * Dialog to add player
+ */
 public class AddPlayerDialog extends JDialog{
 	
+	/**
+	 * Constructor to create a custom dialog
+	 * @param frame: main window frame
+	 * @param gameEngine game engine stores all game data
+	 */
 	public AddPlayerDialog(MainWindow frame, GameEngine gameEngine)
 	{
-//		JDialog addPlayer = new JDialog(frame, "Add Player", true);
+		//create the labels and text fields
 		JLabel heading = new JLabel("Add New Player");
 		JTextField name = new JTextField(30);
 		JTextField credit = new JTextField(30);
 		JLabel nameLabel = new JLabel("Player Name:");
 		JLabel creditLabel = new JLabel("Player Credit:");
+		//add player button and custom actionEventListnener
 		JButton save = new JButton("Add Player");
 		save.addActionListener(new SaveNewPlayer(gameEngine, frame, name, credit, this));
+		//cancel button with custom actionEventListener
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(new Cancel(this));
+		//panel that holds all components
 		JPanel panel = new JPanel();
 		GroupLayout layout = new GroupLayout(panel);
 		panel.setLayout(layout);
 		
+		//set out components in a Group layout pattern
 		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(heading)
 				.addGroup(layout.createSequentialGroup()
@@ -58,8 +66,9 @@ public class AddPlayerDialog extends JDialog{
 						.addComponent(cancel)
 						.addComponent(save))
 				);
-
+		//add panel to dialog
 		add(panel);
+		//set dialog size and position
 		setBounds(400, 400, 500, 400);
 		pack();
 		setVisible(true);

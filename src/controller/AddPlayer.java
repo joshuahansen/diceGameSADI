@@ -7,7 +7,11 @@ import java.awt.event.ActionListener;
 import model.interfaces.GameEngine;
 import view.AddPlayerDialog;
 import view.MainWindow;
-
+/**
+ * 
+ * @author Joshua Hasnen
+ *	action listener for opening add player dialog
+ */
 public class AddPlayer implements ActionListener {
 	GameEngine gameEngine;
 	MainWindow frame;

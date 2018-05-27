@@ -9,7 +9,11 @@ import javax.swing.JTextField;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainWindow;
-
+/**
+ * 
+ * @author Joshua Hansen
+ * ActionListener for player to place a bet
+ */
 public class PlaceBet implements ActionListener {
 	GameEngine gameEngine;
 	MainWindow frame;
@@ -24,20 +28,20 @@ public class PlaceBet implements ActionListener {
 		this.bet = bet;
 		this.dialog = dialog;
 	}
-
+	//get bet entered and check if its a valid bet. If it is dispose the dialog otherwise wait for correct bet to be placed
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String betString = bet.getText();
 		int betValue = Integer.valueOf(betString);
-		System.out.println(betValue);
 		updatePlayer();
 		if(player != null)
 		{
-			System.out.println("CURRENT CREDIT: " + gameEngine.getPlayer(this.player).getPoints() + " BET: "+ betValue);
 			if(this.gameEngine.placeBet(gameEngine.getPlayer(this.player), betValue))
+				frame.refreshFrame();
 				this.dialog.dispose();	
 		}
 	}
+	//update current player placing bet
 	public void updatePlayer()
 	{
 		this.player = this.frame.getCurrentPlayer();

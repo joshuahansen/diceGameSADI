@@ -10,7 +10,11 @@ import model.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainWindow;
-
+/**
+ * 
+ * @author Joshua Hansen
+ * ActionListener for saving a new player to the gameEngine
+ */
 public class SaveNewPlayer implements ActionListener {
 
 	private GameEngine gameEngine;
@@ -27,6 +31,7 @@ public class SaveNewPlayer implements ActionListener {
 		this.creditText = credit;
 		this.dialog = dialog;
 	}
+	//get details entered from dialog, create a new player and add to the gameEngine
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String name = nameText.getText();
